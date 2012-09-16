@@ -301,21 +301,67 @@ final class GLState
             return m_textureUnits;
         }
 
-        void enable(GLint[] features...)
-        {
-            foreach (GLint i; features)
-            {
-                glEnable(i);
-            }
+        void enable(GLint feature0)
+        {   
+            glEnable(feature0);
             GL.check;
         }
 
-        void disable(GLint[] features...)
+        void enable(GLint feature0, GLint feature1)
         {
-            foreach (GLint i; features)
-            {
-                glDisable(i);
-            }
+            glEnable(feature0);
+            glEnable(feature1);
+            GL.check;
+        }
+
+        void disable(GLint feature0)
+        {
+            glDisable(feature0);
+            GL.check;
+        }
+
+        void disable(GLint feature0, GLint feature1)
+        {
+            glDisable(feature0);
+            glDisable(feature1);
+            GL.check;
+        }
+
+        void disable(GLint feature0, GLint feature1, GLint feature2)
+        {
+            glDisable(feature0);
+            glDisable(feature1);
+            glDisable(feature2);
+            GL.check;
+        }
+
+        void disable(GLint feature0, GLint feature1, GLint feature2, GLint feature3)
+        {
+            glDisable(feature0);
+            glDisable(feature1);
+            glDisable(feature2);
+            glDisable(feature3);
+            GL.check;
+        }
+
+        void disable(GLint feature0, GLint feature1, GLint feature2, GLint feature3, GLint feature4)
+        {
+            glDisable(feature0);
+            glDisable(feature1);
+            glDisable(feature2);
+            glDisable(feature3);
+            glDisable(feature4);
+            GL.check;
+        }
+
+        void disable(GLint feature0, GLint feature1, GLint feature2, GLint feature3, GLint feature4, GLint feature5)
+        {
+            glDisable(feature0);
+            glDisable(feature1);
+            glDisable(feature2);
+            glDisable(feature3);
+            glDisable(feature4);
+            glDisable(feature5);
             GL.check;
         }
 

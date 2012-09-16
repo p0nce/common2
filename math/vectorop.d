@@ -30,7 +30,7 @@ template VectorOp(T, alias V)
             return v[index] = value;
         }
 
-        final T squaredLength()
+        T squaredLength()
         {
             T res = 0;
             for (int i = 0; i < V.length; i++)
@@ -40,13 +40,13 @@ template VectorOp(T, alias V)
             return res;
         }
 
-        final T squaredDistanceTo(VEC v)
+        T squaredDistanceTo(VEC v)
         {
             VEC u = v - *this;
             return u.squaredLength();
         }
 
-        final T dot(VEC u)
+        T dot(VEC u)
         {
             T res = 0;
             for (int i = 0; i < V.length; i++)
@@ -58,26 +58,26 @@ template VectorOp(T, alias V)
 
         static if (is(T : float) || is(T : double)  || is(T : real) ) // make no sense on integers
         {
-            final T length()
+            T length()
             {
                 return cast(T) sqrt( squaredLength() );
             }
 
-            final void normalize() // TODO : use SSE to optimize
+            void normalize() // TODO : use SSE to optimize
             {
                 T l2 = length();
                 T rsqrt = 1 / l2;
                 *this *= rsqrt;
             }
 
-            final VEC normalized()
+            VEC normalized()
             {
                 VEC v = *this;
                 v.normalize();
                 return v;
             }
 
-            final T distanceTo(VEC v)
+            T distanceTo(VEC v)
             {
                 return cast(T) sqrt(squaredDistanceTo(v));
             }
