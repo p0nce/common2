@@ -389,7 +389,7 @@ final class FBO
         }
 
 
-        final void setDrawBuffers(int[] drawBuffers...) // pass here which color buffers to write (in general : 0..3)
+        final void setDrawBuffers(int[] drawBuffers) // pass here which color buffers to write (in general : 0..3)
         {
             assert(drawBuffers.length > 0);
             assert(drawBuffers.length < 16);

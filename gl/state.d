@@ -750,14 +750,17 @@ final class GLState
 
         void vertex(float x, float y) { glVertex2f(x, y); }
         void vertex(float x, float y, float z) { glVertex3f(x, y, z); }
-        void vertex(vec2f[] vs...)    {    foreach(v; vs) glVertex2fv(v.ptr);    }
-        void vertex(vec3f[] vs...)    {    foreach(v; vs) glVertex3fv(v.ptr);    }
-        void vertex(vec4f[] vs...)    {    foreach(v; vs) glVertex4fv(v.ptr);    }
+
+        void vertex(vec2f[] vs)    {    foreach(v; vs) glVertex2fv(v.ptr);    }
+        void vertex(vec3f[] vs)    {    foreach(v; vs) glVertex3fv(v.ptr);    }
+        void vertex(vec4f[] vs)    {    foreach(v; vs) glVertex4fv(v.ptr);    }
+
+        void vertex(vec2f v0)    {    glVertex2fv(v0.ptr);    }
+        void vertex(vec3f v0)    {    glVertex3fv(v0.ptr);    }
+        void vertex(vec4f v0)    {    glVertex4fv(v0.ptr);    }
 
         void normal(float x, float y, float z) {    glNormal3f(x, y, z); }
         void normal(vec3f nml)        {    glNormal3fv(nml.ptr);    }
-
-
 
         void texCoord(int n, float x, float y) { glMultiTexCoord2f(GL_TEXTURE0 + n, x, y); }
         void texCoord(int n, float x, float y, float z) {    glMultiTexCoord3f(GL_TEXTURE0 + n, x, y, z); }
