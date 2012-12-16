@@ -60,10 +60,10 @@ template VectorOp(T, alias V)
         {
             T length()
             {
-                return cast(T) sqrt( squaredLength() );
+                return cast(T) math.common.sqrt( squaredLength() );
             }
 
-            void normalize() // TODO : use SSE to optimize
+            void normalize()
             {
                 T l2 = length();
                 T rsqrt = 1 / l2;
@@ -79,7 +79,7 @@ template VectorOp(T, alias V)
 
             T distanceTo(VEC v)
             {
-                return cast(T) sqrt(squaredDistanceTo(v));
+                return cast(T) math.common.sqrt(squaredDistanceTo(v));
             }
         }
     }
