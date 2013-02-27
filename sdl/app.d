@@ -1,7 +1,6 @@
 module sdl.app;
 
 import derelict.sdl.sdl;
-import derelict.devil.il, derelict.devil.ilu;
 import std.gc, sdl.state, std.stdio, std.string;
 import misc.framecounter, misc.logger, math.all;
 import gl.state;

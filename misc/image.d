@@ -5,7 +5,11 @@ import math.random;
 import misc.colors;
 
 import sdl.sdlimage;
-import misc.devilimage;
+
+version(useDevIL)
+{
+    import misc.devilimage;
+}
 import std.stdio;
 import std.c.string;
 
@@ -43,10 +47,13 @@ final class Image
             m_data.length = width * height;
         }
 
-        this(DevilImage image)
+        version(useDevIL)
         {
-            this(image.width, image.height); // allocate some space
-            memcpy(m_data.ptr, image.data(), uint.sizeof * m_data.length);
+            this(DevilImage image)
+            {
+                this(image.width, image.height); // allocate some space
+                memcpy(m_data.ptr, image.data(), uint.sizeof * m_data.length);
+            }
         }
 
         this(SDLImage image)
@@ -59,19 +66,21 @@ final class Image
             image.unlock();
         }
 
-
-        this(char[] filename)
+        version(useDevIL)
         {
-            scope di = new DevilImage(filename);
-            this(di);
-        }
+            this(char[] filename)
+            {
+                scope di = new DevilImage(filename);
+                this(di);
+            }
 
 
-        void save(char[] filename)
-        {
-            scope DevilImage devilImage = new DevilImage();
-            devilImage.setData(m_width, m_height, ptr());
-            devilImage.saveImage(filename);
+            void save(char[] filename)
+            {
+                scope DevilImage devilImage = new DevilImage();
+                devilImage.setData(m_width, m_height, ptr());
+                devilImage.saveImage(filename);
+            }
         }
 
         final int width()
