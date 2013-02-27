@@ -380,7 +380,7 @@ class Texture
 
         final int bind(int unit)
         {
-            return m_state.textureUnits.bind(unit, this);;
+            return m_state.textureUnits.bind(unit, this);
         }
 
         final bool isBound()
