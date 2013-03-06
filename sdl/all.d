@@ -11,4 +11,5 @@ public
     import sdl.mutex;
     import sdl.semaphore;
     import sdl.sdlimage;
+    import sdl.mixer;
 }
