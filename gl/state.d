@@ -93,8 +93,9 @@ final class GLState
         static const PERSPECTIVE_CORRECTION_HINT = GL_PERSPECTIVE_CORRECTION_HINT;
         static const GENERATE_MIPMAP_HINT = GL_GENERATE_MIPMAP_HINT;
         static const POINT_SMOOTH_HINT = GL_POINT_SMOOTH_HINT;
-
-
+        static const LINE_SMOOTH_HINT = GL_LINE_SMOOTH_HINT;
+        static const POLYGON_SMOOTH_HINT = GL_POLYGON_SMOOTH_HINT;
+    
         static const TEXTURE_1D = GL_TEXTURE_1D;
         static const TEXTURE_2D = GL_TEXTURE_2D;
         static const TEXTURE_3D = GL_TEXTURE_3D;
