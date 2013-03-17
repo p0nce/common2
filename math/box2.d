@@ -158,6 +158,31 @@ struct box2(T)
             vec2!(T) nb = max2!(T)(bb.b, b);
             return box2(na, nb);
         }
+
+        static if (is(T : float) || is(T : double)  || is(T : real) )
+        {
+
+            // Euclidean squared distance from a point
+            // source: Numerical Recipes Third Edition (2007)
+            T distanceTo(vec2!(T) p)
+            {
+                T distanceSquared = 0;
+
+                if (p.x < a.x)
+                    distanceSquared += sqr(p.x - a.x);
+
+                if (p.x > b.x)
+                    distanceSquared += sqr(p.x - b.x);
+
+                if (p.y < a.y)
+                    distanceSquared += sqr(p.y - a.y);
+
+                if (p.y > b.y)
+                    distanceSquared += sqr(p.y - b.y);
+
+                return sqrt!(T)(distanceSquared);
+            }
+        }
     }
 }
 
