@@ -103,7 +103,7 @@ final class Chunk
 		// play on a free channel
 		void play(float volume)
 		{
-			int vol = round(clamp(volume, 0.f, 1.f)) * 127;
+			int vol = cast(int)round(clamp(volume, 0.f, 1.f)) * 127;
 			if (vol <= 0) return;
 
 			Mix_VolumeChunk(m_handle, vol);
@@ -118,7 +118,7 @@ final class Chunk
 
 		void playPosition(float volume, float distance, float angle)
 		{
-			int vol = round(clampf(volume * exp(-distance * 0.03), 0.f, 1.f) * 127);
+			int vol = cast(int)round(clampf(volume * exp(-distance * 0.03), 0.f, 1.f) * 127);
 			if (vol <= 0) return;
 			/*
 			int dist = round(clamp(volume, 0.f, 1.f) * 255);
@@ -142,8 +142,8 @@ final class Chunk
 				float l, r;
 				panLaw(sin(angle), l, r);
 
-				int left = round(127 * l);
-				int right = round(127 * r);
+				int left = cast(int)round(127 * l);
+				int right = cast(int)round(127 * r);
 
                 //				Mix_SetPanning(index, cast(ubyte)left, cast(ubyte)right);
 
@@ -195,7 +195,7 @@ final class Music
 
 		static float setVolume(float v)
 		{
-			int vi = round(clamp(v, 0.f,1.f) * MIX_MAX_VOLUME);
+			int vi = cast(int)round(clamp(v, 0.f,1.f) * MIX_MAX_VOLUME);
 			Mix_VolumeMusic(vi);
 			return v;
 		}
@@ -242,8 +242,8 @@ final class Channel
 
 			vec2f volume = panLaw(x);
 
-			int left = round(127 * volume.x);
-			int right = round(127 * volume.y);
+			int left = cast(int)round(127 * volume.x);
+			int right = cast(int)round(127 * volume.y);
 
 			Mix_SetPanning(m_index, cast(ubyte)left, cast(ubyte)right);
 			return x;
@@ -252,7 +252,7 @@ final class Channel
 		float volume(float v)
 		{
 			float v2 = clamp(v, 0.f, 1.f);
-			Mix_Volume(m_index, round(v2 * 127));
+			Mix_Volume(m_index, cast(int)round(v2 * 127));
 
 			return v;
 		}

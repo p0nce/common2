@@ -44,6 +44,10 @@ alias std.math.atan2 atan2;
 alias std.math.isnan isNaN;
 alias std.math.isfinite isFinite;
 
+alias std.math.round round;
+alias std.math.trunc trunc;
+alias std.math.floor floor;
+
 version(D_Version2)
 {
     alias std.math.isSubnormal isSubnormal;
@@ -90,12 +94,6 @@ const double PI_2_D = PI_2;
 const double PI_4_D = PI_4;
 const double SQRT2_D = SQRT2;
 const double SQRT2_INV_D = 1.0L / SQRT2;
-
-public
-{
-    import math.rounding;
-}
-
 
 void swap(T)(ref T a, ref T b)
 {
@@ -228,7 +226,7 @@ alias expMap!(double) expMapd;
  */
 T fract(T)(T x)
 {
-    return x - math.rounding.floor(x);
+    return x - cast(int)floor(x);
 }
 
 alias fract!(float) fractf;
@@ -237,54 +235,15 @@ alias fract!(double) fractd;
 
 T pow2(T)(T x)
 {
-    asm
-    {
-        fld1;
-        fld x;
-        fprem;
-        fstp ST(1);
-        f2xm1;
-        fld1;
-        fadd;
-        fldcw FPU_ROUND_TOWARD_ZERO;
-        fld [x];
-        frndint;
-        fld1;
-        fscale;
-        fstp ST(1);
-        fmul;
-    }
+    return cast(T)std.math.pow(2, x);
 }
 
 alias pow2!(float) pow2f;
 alias pow2!(double) pow2d;
 
-
-// seem to break with powf( x, 1.5f ), don't know why
-T pow(T)(T base, T exponent)
+T pow(T)(T base, T exp)
 {
-    T tmp;
-    asm
-    {
-        fld exponent;
-          fld base;
-          fyl2x;
-          fst tmp;
-          fld1;
-        fxch ST(1);
-        fprem;
-        fstp ST(1);
-        f2xm1;
-        fld1;
-        faddp ST(1), ST;
-        fldcw FPU_ROUND_TOWARD_ZERO;
-        fld tmp;
-        frndint;
-        fld1;
-        fscale;
-        fstp ST(1);
-        fmul;
-    }
+    return cast(T)std.math.pow(base, exp);
 }
 
 alias pow!(float) powf;
